@@ -155,7 +155,7 @@ git reset --soft xxxxxx
 git stash
 
 #或
-git stash -m '暂存'
+git stash save -m '暂存'
 
 # 查看暂存栈
 git stash list
