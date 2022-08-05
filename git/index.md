@@ -11,6 +11,7 @@
 - [Git配置多账号切换，GitLab和GitHub分开账户](https://zhuanlan.zhihu.com/p/105359388?utm_source=wechat_session)
 - [git修改文件名大小写敏感问题解决](https://blog.csdn.net/chaiqunxing51/article/details/52055631)
 - [在开发过程中使用 git rebase 还是 git merge，优缺点分别是什么？](https://www.zhihu.com/question/36509119/answer/1990894567)
+- [Git小游戏](https://learngitbranching.js.org/)
 
 ## Git 经典图
 
