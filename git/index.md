@@ -116,6 +116,12 @@ git commit --amend -m "新的提交信息"
 git log
 ```
 
+`git reset` 通过把分支记录回退几个提交记录来实现撤销改动。你可以将这想象成“改写历史”。`git reset` 向上移动分支，原来指向的提交记录就跟从来没有提交过一样。
+
+```bash
+git reset HEAD~2
+```
+
 回滚到具体的某个版本
 
 ```bash
@@ -148,6 +154,18 @@ git reset ––hard 版本号（版本号用7位即可）
 # 回滚到某个版本，并且 xxxxx hash之前的 commit 内容会被保留下来
 git reset --soft xxxxxx
 ```
+
+## revert
+
+虽然在你的本地分支中使用 `git reset` 很方便，但是这种“改写历史”的方法对大家一起使用的远程分支是无效的哦！
+
+为了撤销更改并分享给别人，我们需要使用 `git revert`。
+
+```bash
+git revert HEAD
+```
+
+`revert` 之后就可以把你的更改推送到远程仓库与别人分享啦。
 
 ## stash
 
