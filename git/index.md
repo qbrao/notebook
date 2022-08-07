@@ -99,6 +99,17 @@ Git 远程仓库相当的操作实际可以归纳为两点：向远程仓库传�
 
 所以, 你可以将 `git fetch` 的理解为单纯的下载操作。
 
+## pull
+
+```bash
+git fetch
+git merge o/main
+```
+
+上面用 `fetch` 下载了远程分支（只下载，但是本地的 `main` 分支没有改变）, 然后通过 `git merge o/main` 合并了这一提交记录。现在我们的 `main` (本地)分支包含了远程仓库中的更新（在本例中远程仓库名为 origin）
+
+`git pull` 就是 git fetch 和 git merge 的缩写！
+
 ## add
 
 git add 的几种参数区别
