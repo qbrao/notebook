@@ -151,6 +151,42 @@ git commit --amend -m "新的提交信息"
 
 一些开发人员喜欢保留提交历史，因此更偏爱 merge。而其他人可能更喜欢干净的提交树，于是偏爱 rebase。仁者见仁，智者见智。
 
+**rebase 流程：**
+
+![rebase流程](./images/rebase%E6%B5%81%E7%A8%8B.png)
+
+```bash
+#提交代码:	
+git add .
+
+#创建 commit:	
+git commit -m ''
+
+#提交到远程分支:
+git push origin 自己的分支
+
+#每次都要 fetch 远程主分支
+git fetch
+
+#rebase 操作:
+git rebase -i origin/dev
+
+#出现冲突，解决冲突后
+
+#提交代码:
+git add .
+
+#继续 rebase 操作:
+git rebase --continue
+
+#强推到远程分支:
+#需要加 -f ，不然会跟自己的分支 merge
+git push -f origin 自己的分支
+
+#中断操作
+git rebase --abort
+```
+
 ## reset
 
 今天 pull 代码后，打包出现问题，但是找不到出问题的具体文件。使用排除法来查找具体是哪次提交的问题。
