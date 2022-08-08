@@ -110,6 +110,8 @@ git merge o/main
 
 `git pull` 就是 git fetch 和 git merge 的缩写！
 
+`git pull --rebase` 就是 fetch 和 rebase 的简写！
+
 ## add
 
 git add 的几种参数区别
