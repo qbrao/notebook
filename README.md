@@ -7,6 +7,7 @@
 - [code review](./notebook/code_review/index.md)
 - [基础概念](./notebook/%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/index.md)
 - [JavaScript 变量](./notebook/JavaScript%20%E5%8F%98%E9%87%8F/index.md)
+- [JavaScript 函数](./notebook/JavaScript%20%E5%87%BD%E6%95%B0/)
 - [HTTP](./notebook/HTTP/index.md)
 - [Promise和AsyncAwait](./notebook/Promise%E5%92%8CAsyncAwait/index.md)
 - [Event Loop](./notebook/EventLoop/index.md)
