@@ -13,6 +13,7 @@
 - [Event Loop](./notebook/EventLoop/index.md)
 - [性能优化](./notebook/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/index.md)
 - [this、apply、call、bind](./notebook/this-apply-call-bind/index.md)
+- [JavaScript 面向对象的程序设计](./notebook/JavaScript%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1/index.md)
 
 创建这个仓库的目的是把笔记转移到 github，顺便复习和整理一下笔记。弃用网易云笔记的原因是好几年前提的 bug 一直都不修也没有任何反馈，并且只用到了 md 文件的图床会员功能，正好会员过期了，每天搬运一点点吧。
 
