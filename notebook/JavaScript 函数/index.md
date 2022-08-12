@@ -13,11 +13,23 @@
     - [闭包的用途？](#闭包的用途)
     - [使用闭包的注意事项](#使用闭包的注意事项)
     - [练习题](#练习题)
-  - [参考资料](#参考资料)
+  - [防抖和节流](#防抖和节流)
+    - [函数防抖(debounce)](#函数防抖debounce)
+    - [函数节流(throttle)](#函数节流throttle)
 
 <!-- /TOC -->
 
 # JavaScript 函数
+
+**参考资料**
+
+- [【阮一峰】学习Javascript闭包（Closure）](http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html)
+- [深入理解闭包之前置知识→作用域与词法作用域](https://juejin.im/post/5afb0ae56fb9a07aa2138425)
+- [闭包详解一](https://juejin.im/post/5b081f8d6fb9a07a9b3664b6)
+- [闭包详解二：JavaScript中的高阶函数](https://juejin.im/post/5b167b476fb9a01e5b10f19b)
+- [JavaScript 闭包](https://juejin.im/entry/57d60f7067f3560057e37e25)
+- 《JavaScript设计模式与开发实践》
+- [教你分分钟学会javascript闭包操作](https://zhuanlan.zhihu.com/p/25309076)
 
 ## 定义函数的两种方式
 
@@ -394,12 +406,140 @@ for(var i=0;i<3;i++)
 }
 ```
 
-## 参考资料
 
-- [【阮一峰】学习Javascript闭包（Closure）](http://www.ruanyifeng.com/blog/2009/08/learning_javascript_closures.html)
-- [深入理解闭包之前置知识→作用域与词法作用域](https://juejin.im/post/5afb0ae56fb9a07aa2138425)
-- [闭包详解一](https://juejin.im/post/5b081f8d6fb9a07a9b3664b6)
-- [闭包详解二：JavaScript中的高阶函数](https://juejin.im/post/5b167b476fb9a01e5b10f19b)
-- [JavaScript 闭包](https://juejin.im/entry/57d60f7067f3560057e37e25)
-- 《JavaScript设计模式与开发实践》
-- [教你分分钟学会javascript闭包操作](https://zhuanlan.zhihu.com/p/25309076)
+## 防抖和节流
+
+**参考资料**
+
+- [JS的防抖与节流](https://juejin.im/entry/5b1d2d54f265da6e2545bfa4)
+- [JS函数节流防抖](https://juejin.im/entry/59e631c46fb9a04525773144)
+- [学习JS防抖](https://juejin.im/entry/5937cc8cb123db0064496405)
+
+**为什么使用防抖和节流**
+
+- 解决频繁操作带来的性能问题（卡顿，崩溃）。
+- DOM操作、资源加载
+
+### 函数防抖(debounce)
+
+**使用场景**
+
+- 实时搜索（keyup）
+- 拖拽（mousemove）
+
+**原理**
+
+- 连续触发事件时，在指定时间内不会执行回调。
+- 从最后一个触发事件开始计算指定时间后执行回调。
+
+![函数防抖](./images/%E5%87%BD%E6%95%B0%E9%98%B2%E6%8A%96.jpg)
+
+**实现**
+
+```js
+/*
+ * 函数防抖 debounce
+*/
+function debounce(func, wait) {
+  var timeout = null;
+  return function () {
+    if (timeout !== null) {
+      clearTimeout(timeout);
+    }
+    timeout = setTimeout(func, wait);
+  }
+}
+// 处理函数
+function handle() {
+  console.log(Math.random());
+}
+// 滚动事件
+window.addEventListener('scroll', debounce(handle, 200));
+```
+
+
+### 函数节流(throttle)
+
+**使用场景**
+
+- 窗口调整（resize）
+- 页面滚动（scroll）
+- 抢购疯狂点击（mousedown）
+
+**原理&&
+
+- 连续触发事件时，在指定时间结束后执行一次回调函数。
+
+![函数节流](./images/%E5%87%BD%E6%95%B0%E8%8A%82%E6%B5%81.jpg)
+
+```js
+/*
+ * 函数节流 throttle
+ * 时间戳
+*/
+let throttle = function (func, wait) {
+  let prev = Date.now();
+  return function () {
+    let now = Date.now();
+    if (now - prev >= wait) {
+      func.apply(this, arguments);
+      prev = Date.now();
+    }
+  }
+}
+
+function handle() {
+  console.log(Math.random());
+}
+window.addEventListener('scroll', throttle(handle, 1000));
+```
+
+```js
+/*
+ * 函数节流 throttle
+ * 定时器
+ */
+let throttle = function (func, wait) {
+  let timer = null;
+  return function () {
+    if (!timer) {
+      timer = setTimeout(function () {
+        func.apply(this, arguments);
+        timer = null;
+      }, wait);
+    }
+  }
+}
+
+function handle() {
+  console.log(Math.random());
+}
+window.addEventListener('scroll', throttle(handle, 1000));
+```
+
+```js
+/*
+  * 函数节流 throttle
+  * 时间戳 + 定时器
+  */
+let throttle = function (func, wait) {
+  let timer = null;
+  let startTime = Date.now();
+  return function () {
+    let curTime = Date.now();
+    let remaining = wait - (curTime - startTime);
+    clearTimeout(timer);
+    if (remaining <= 0) {
+      func.apply(this, arguments);
+      startTime = Date.now();
+    } else {
+      timer = setTimeout(func, remaining);
+    }
+  }
+}
+
+function handle() {
+  console.log(Math.random());
+}
+window.addEventListener('scroll', throttle(handle, 1000));
+```
