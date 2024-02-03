@@ -196,6 +196,10 @@ mongodump --host --port --out /path/to/backup/directory #备份到指定文件
 2024-01-19T16:52:02.392+0800    88032 document(s) restored successfully. 0 document(s) failed to restore.
 ```
 
+高版本的 mongodb 安装后不会自带MongoDB Shell，所以需要去官网下载 [mongosh](https://www.mongodb.com/try/download/shell)
+
+![mongosh](./images/mongosh.png)
+
 ## 安装 nginx
 
 ```bash
